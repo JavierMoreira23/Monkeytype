@@ -22,7 +22,7 @@
 <body>
     <main>
         <section id="game">
-            <time>30</time>
+            <time></time>
             <p></p> 
             <input autofocus>
         </section>
@@ -36,4 +36,16 @@
 
     const INITIAL_TIME =30;
     const TEXT = 'the quick brom fox jumps over the lazy dog and midudev is trying to clone monkey type for fun and profit using vanilla js for the typing test speed'
+
+    let words = []
+    let currentTime = INITIAL_TIME;
+    initGame();
+    initEvents();
+    function initGame(){
+        words= TEXT.split('').slice(0,32)
+        currentTime= INITIAL_TIME
+        $time.textContent = currentTime
+    }
+    function initEvents(){}
+
 </script>
