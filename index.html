@@ -76,6 +76,16 @@
       `
       })
       .join("")
+
+      const intervalId = setInterval(()=>{
+        currentTime--
+        $time.textContent = currentTime
+
+        if(currentTime===0){
+            clearInterval(intervalId)
+            console.log('game over')
+        }
+      },1000)
   }
   function initEvents() {}
 </script>
