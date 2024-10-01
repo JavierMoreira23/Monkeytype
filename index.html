@@ -128,7 +128,20 @@
     const currentWord = $currentWord.innerText.trim()
     $input.maxLength = currentWord.length
     console.log({value:$input.value, currentWord})
-}
+
+    const $allLetters = $currentWord.querySelectorAll('letter')
+
+    $input.value.split('').forEach((char,index)=>{      
+      const $letter = $allLetters[index]
+      const lettertoCheck = currentWord[index]
+
+      const isCorrect = char === lettertoCheck
+      const letterClass = isCorrect ? 'correct' : 'incorrect'
+      $letter.classList.add(letterClass)
+      
+    })
+    
+  }
 
 
   function gameOver(){
