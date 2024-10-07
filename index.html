@@ -65,8 +65,12 @@
   }
 
   word{
+    
+    border-bottom: 1.5px solid transparent;
+    transition: border-color 0.3s ease-in-out;
+
     &.marked{
-      border-bottom: 2px solid var(var(--red));
+      border-bottom: 2px solid var(--red);
     }
   }
   @keyframes blink{
@@ -76,6 +80,12 @@
     75%{
         opacity: 0;
     }
+    #game{
+      display:block;
+    }
+    #results{
+      display: none;
+    }
   }
 </style>
 <body>
@@ -84,6 +94,9 @@
       <time></time>
       <p></p>
       <input autofocus />
+    </section>
+    <section id="results">
+      <h2>wpm</h2>
     </section>
   </main>
 </body>
@@ -158,8 +171,37 @@
         .querySelectorAll('letter:not(.correct)').length>0
       
       const classToAdd = hasMissedLetters ? 'marked' : 'correct'
-      $currentWord.classList.add(classToAdd)
+      $currentWord.classList.add(classToAdd)  
+      return
+    }
+    if (key ==='Backspace'){
+      const $prevWord = $currentWord.previousElementSibling
+      const $prevLetter = $currentLetter.previousElementSibling
 
+      if(!$prevWord && !$prevLetter){
+        event.preventDefault()
+        return
+      }
+
+      const $wordMarked = $paragraph.querySelector('word.marked')
+      if(!$prevLetter){
+        event.preventDefault()
+        $prevWord.classList.remove('marked')
+        $prevWord.classList.add('active')
+
+        const $LetterToGo =$prevWord.querySelector('letter: last-child')
+        $currentLetter.classList.remove('active')
+        $LetterToGo.classList.add('active')
+
+        $input.value=[
+        ...$prevWord-querySelectorAll('letter.correct, letter.incorrect')
+        ].map($el => {
+          return $el.classList.contains('correct') ? $el.innerText  :'*'  
+          
+        $el.innerText
+        })
+          .join('')
+      }
     }
   }
 
