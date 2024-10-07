@@ -137,6 +137,17 @@
     const {key}= event
     if (key=== ' '){
       event.preventDefault()
+      const $nextWord = $currentWord.nextElementSibling
+      const $nextLetter = $nextWord.querySelector('letter')
+
+      $currentWord.classList.remove('active')
+      $nextLetter.classList.remove('active')
+
+      $nextWord.classList.add('active')
+      $nextLetter.classList.add('active')
+
+      $input.value= ''
+
     }
   }
 
