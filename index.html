@@ -87,6 +87,24 @@
       display: none;
     }
   }
+
+  h2{
+    font-weight: 400;
+    opacity: 4;
+    margin: 0;
+    font-size: 16px;
+  }
+
+  h3{
+    font-weight: 400;
+    margin: 0;
+    font-size: 24px;
+    color: var(--yellow);
+  }
+
+  button{
+    
+  }
 </style>
 <body>
   <main>
@@ -100,6 +118,10 @@
       <h3></h3>
       <h2>accurracy</h2>
       <h3></h3>
+
+      <button id="reload-button">
+        <svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1.5"  stroke-linecap="round"  stroke-linejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" /><path d="M20 4v5h-5" /></svg>
+      </button>
     </section>
   </main>
 </body>
@@ -113,7 +135,8 @@
   const $game = document.querySelector('#game')
   const $results = document.querySelector('#results')
   const $wpm = $results.querySelector('h3')
-  const $acurracy = $results.querySelector('h3:last-child')
+  const $acurracy = $results.querySelector('h3:last-child')|
+  const $button = document.querySelector('#reload-button')
 
   const INITIAL_TIME = 3;
 
@@ -260,6 +283,10 @@
     const accurracy = totalLetters > 0
       ? (correctLetter / totalLetters) *100
       :0
-    //me quedo en min 1.20.40
+    const wpm = correctWords * 60 / 10
+
+    $wpm.textContent = wpm
+
+    $acurracy.textContent = '${accuracy.toFixed(2)}%'
   }
 </script>
